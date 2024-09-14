@@ -18,7 +18,18 @@ int		check_limits(size_t *data_limit, size_t *as_limit) {
 
 t_block	*extend_heap(t_heap *heap, t_block *last, size_t size);
 
-t_block	*find_free_block(t_heap *heap, size_t size);
+t_block	*find_free_block(t_heap *heap, size_t size) {
+  t_block *result;
+
+  result = heap->first;
+  while (result) {
+    if (result->free && result->size >= size) {
+      return (result);
+    }
+    result = result->next;
+  }
+  return (0);
+}
 
 void	ft_malloc_display(t_heap heap);
 
