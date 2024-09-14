@@ -2,6 +2,7 @@
 # define FT_MALLOC_H
 
 # include <stdlib.h>
+# include <stdio.h>
 # include <sys/mman.h>
 # include <sys/resource.h>
 # include <sys/types.h>
@@ -32,7 +33,7 @@ typedef struct s_heap {
 } t_heap;
 
 //Fonctions utilitaires
-int		check_limits(size_t *data_limit, size_t *hard_limit);
+int		check_limits(size_t *data_limit, size_t *as_limit);
 t_block	*extend_heap(t_heap *heap, t_block *last, size_t size);
 t_block	*find_free_block(t_heap *heap, size_t size);
 void	ft_malloc_display(t_heap heap);
