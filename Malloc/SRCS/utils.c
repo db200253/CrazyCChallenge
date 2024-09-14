@@ -22,7 +22,11 @@ t_block	*find_free_block(t_heap *heap, size_t size);
 
 void	ft_malloc_display(t_heap heap);
 
-void	init_heap(t_heap *heap);
+void	init_heap(t_heap *heap) {
+  heap->first = (t_block *)0;
+  heap->total_size = 0;
+  heap->free_size = 0;
+}
 
 void	merge_blocks(t_block *block);
 
