@@ -58,9 +58,9 @@ t_block	*find_free_block(size_t size) {
 void	ft_malloc_display() {
 	if (!g_heap.first)
 		return ;
-	printf("Total size of the heap : %zu\n", g_heap.total_size);
+	printf("\nTotal size of the heap : %zu\n", g_heap.total_size);
 	printf("Free size of the heap : %zu\n", g_heap.free_size);
-	printf("Heap structure:\n\n");
+	printf("\nHeap structure:\n\n");
 	printf("------ Start of heap ------\n");
 
 	t_block *current = g_heap.first;
