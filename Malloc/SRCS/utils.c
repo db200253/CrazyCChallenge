@@ -16,7 +16,7 @@ int		check_limits(size_t *data_limit, size_t *as_limit) {
 	return (1);
 }
 
-void	*extend_heap(t_heap *heap, size_t size) {
+void	*extend_heap(size_t size) {
 	size_t total_size = size + sizeof(t_block);
 	size_t alg_size = ALIGN(total_size);
 	void *new_area = mmap(NULL, alg_size, PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
@@ -29,23 +29,23 @@ void	*extend_heap(t_heap *heap, size_t size) {
 	new_block->free = 1;
 	new_block->next = 0;
 	new_block->prev = 0;
-	if (!heap->first)
-		heap->first = new_block;
+	if (!g_heap.first)
+		g_heap.first = new_block;
 	else {
-		t_block *last = heap->first;
+		t_block *last = g_heap.first;
 		while (last->next)
 			last = last->next;
 		last->next = new_block;
 	}
-	heap->total_size += alg_size;
-	heap->free_size += size;
+	g_heap.total_size += alg_size;
+	g_heap.free_size += size;
 	return ((void *)(new_block + 1));
 }
 
-t_block	*find_free_block(t_heap *heap, size_t size) {
+t_block	*find_free_block(size_t size) {
 	t_block *result;
 
-	result = heap->first;
+	result = g_heap.first;
 	while (result) {
 		if (result->free && result->size >= size) {
 			return (result);
@@ -55,15 +55,15 @@ t_block	*find_free_block(t_heap *heap, size_t size) {
 	return (0);
 }
 
-void	ft_malloc_display(t_heap *heap) {
-	if (!heap || !heap->first)
+void	ft_malloc_display() {
+	if (!g_heap.first)
 		return ;
-	printf("Total size of the heap : %zu\n", heap->total_size);
-	printf("Free size of the heap : %zu\n", heap->free_size);
+	printf("Total size of the heap : %zu\n", g_heap.total_size);
+	printf("Free size of the heap : %zu\n", g_heap.free_size);
 	printf("Heap structure:\n\n");
 	printf("------ Start of heap ------\n");
 
-	t_block *current = heap->first;
+	t_block *current = g_heap.first;
 	while (current) {
 		printf("| Block size: %zu | %s |\n", current->size, current->free ? "Free" : "Allocated");
 		if (current->next) {
@@ -74,10 +74,10 @@ void	ft_malloc_display(t_heap *heap) {
 	printf("------- End of heap -------\n");
 }
 
-void	init_heap(t_heap *heap) {
-	heap->first = (t_block *)0;
-	heap->total_size = 0;
-	heap->free_size = 0;
+void	init_heap() {
+	g_heap.first = (t_block *)0;
+	g_heap.total_size = 0;
+	g_heap.free_size = 0;
 }
 
 void	merge_blocks(t_block *block) {

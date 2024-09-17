@@ -34,12 +34,14 @@ typedef struct s_heap {
   size_t		free_size;
 } t_heap;
 
+extern t_heap	g_heap;
+
 //Fonctions utilitaires
 int		check_limits(size_t *data_limit, size_t *as_limit);
-void	*extend_heap(t_heap *heap, size_t size);
-t_block	*find_free_block(t_heap *heap, size_t size);
-void	ft_malloc_display(t_heap *heap);
-void	init_heap(t_heap *heap);
+void	*extend_heap(size_t size);
+t_block	*find_free_block(size_t size);
+void	ft_malloc_display();
+void	init_heap();
 void	merge_blocks(t_block *block);
 t_block	*split_block(t_block *block, size_t size);
 
