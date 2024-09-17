@@ -1,9 +1,7 @@
 # Roadmap du Crazy C Challenge
 
 ## Introduction
-Aprés plus de 4 ans d'études dans le domaine du numérique (à la création de ce repo), mon souhait de travailler dans le développement système est de plus en plus fort.
-
-L'idée un peu folle qui m'est venue en tête est de tout simplement casser mes habitudes et sortir de ma zone de confort en tant que développeur en réalisant 14 projets articulés en 7 phases distinctes en n'utilisant que le langage C. L'objectif est de finir cela avant la fin de mes études (le 30 Septembre 2025), ce qui ne me laisse qu'un an pour passer d'un niveau intermédiaire à un niveau confirmé.
+Aprés plus de 4 ans d'études dans le domaine du numérique (à la création de ce repo) une idée un peu folle m'est venue en tête. J'ai tout simplement besoin de casser mes habitudes et de sortir de ma zone de confort en tant que développeur en réalisant 14 projets articulés en 7 phases distinctes en n'utilisant que le langage C. L'objectif est de finir cela avant la fin de mes études (le 30 Septembre 2025), ce qui ne me laisse qu'un an pour passer d'un niveau intermédiaire à un niveau confirmé.
 
 
 ## Table des matières
