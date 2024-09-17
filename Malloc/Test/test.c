@@ -122,10 +122,36 @@ void __test_find_free_block(void) {
   printf("-------------------------------------\n\n");
 }
 
+void __test_merge_blocks(void) {
+	t_heap heap;
+	init_heap(&heap);
+	print_blue_frame("Merging blocks");
+	printf("-------------------------------------\n\n");
+	void *ptr = extend_heap(&heap, 1024);
+	if (ptr)
+	  printf("Heap extended successfully.\n");
+	void *ptr2 = extend_heap(&heap, 4096);
+	if (ptr2)
+	  printf("Heap extended successfully.\n");
+	void *ptr3 = extend_heap(&heap, 2756);
+	if (ptr3)
+	  printf("Heap extended successfully.\n");
+	t_block *block = heap.first;
+	merge_blocks(block);
+	t_block *test = find_free_block(&heap, 7800);
+	if (test){
+	  printf("Found a free block with size %zu bytes\n", test->size);
+	} else {
+	  printf("No suitable free block found. Error in merging.\n");
+	}
+	printf("-------------------------------------\n\n");
+}
+
 int main(void) {
   __test_init_heap();
   __test_check_limits();
   __test_extend_heap();
   __test_find_free_block();
+  __test_merge_blocks();
   return (0);
 }
