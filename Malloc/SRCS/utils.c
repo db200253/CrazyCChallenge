@@ -19,7 +19,7 @@ int		check_limits(size_t *data_limit, size_t *as_limit) {
 void	*extend_heap(t_heap *heap, size_t size) {
 	size_t total_size = size + sizeof(t_block);
 	size_t alg_size = ALIGN(total_size);
-	void *new_area = mmap(NULL, total_size, PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
+	void *new_area = mmap(NULL, alg_size, PROT_READ | PROT_WRITE, MAP_ANONYMOUS | MAP_PRIVATE, -1, 0);
 	if (new_area == MAP_FAILED) {
 		perror("mmap");
 		return (0);
@@ -55,7 +55,24 @@ t_block	*find_free_block(t_heap *heap, size_t size) {
 	return (0);
 }
 
-void	ft_malloc_display(t_heap heap);
+void	ft_malloc_display(t_heap *heap) {
+	if (!heap || !heap->first)
+		return ;
+	printf("Total size of the heap : %zu\n", heap->total_size);
+	printf("Free size of the heap : %zu\n", heap->free_size);
+	printf("Heap structure:\n\n");
+	printf("------ Start of heap ------\n");
+
+	t_block *current = heap->first;
+	while (current) {
+		printf("| Block size: %zu | %s |\n", current->size, current->free ? "Free" : "Allocated");
+		if (current->next) {
+			printf("             ↓\n");
+		}
+	    current = current->next;
+	}
+	printf("------- End of heap -------\n");
+}
 
 void	init_heap(t_heap *heap) {
 	heap->first = (t_block *)0;

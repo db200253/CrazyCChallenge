@@ -147,11 +147,26 @@ void __test_merge_blocks(void) {
 	printf("-------------------------------------\n\n");
 }
 
+void __test_malloc_display(void) {
+	t_heap heap;
+	init_heap(&heap);
+	print_blue_frame("Displaying blocks");
+	printf("-------------------------------------\n\n");
+	for (int i = 0;i < 10; ++i) {
+		void *ptr = extend_heap(&heap, rand()%4096 + 2048);
+		(void)ptr;
+	}
+	ft_malloc_display(&heap);
+	printf("-------------------------------------\n\n");
+}
+
 int main(void) {
   __test_init_heap();
   __test_check_limits();
   __test_extend_heap();
   __test_find_free_block();
   __test_merge_blocks();
+  srand(time(NULL));
+  __test_malloc_display();
   return (0);
 }
