@@ -43,7 +43,7 @@ t_block	*find_free_block(size_t size);
 void	ft_malloc_display();
 void	init_heap();
 void	merge_blocks(t_block *block);
-t_block	*split_block(t_block *block, size_t size);
+void split_block(t_block *block, size_t size);
 
 //Fonctions à redéfinir
 void	*ft_malloc(size_t size);

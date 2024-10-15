@@ -95,4 +95,19 @@ void	merge_blocks(t_block *block) {
 	block->size = total_size;
 }
 
-t_block	*split_block(t_block *block, size_t size);
+void split_block(t_block *block, size_t size) {
+ 	if (block->size > size + sizeof(t_block) + 4) {
+        t_block *new = (t_block *)((char *)block + size + sizeof(t_block));
+        new->size = block->size - size - sizeof(t_block);
+        new->free = 1;
+        new->prev = block;
+        if (block->next) {
+        	new->next = block->next;
+        	block->next->prev = new;
+       	} else {
+          	new->next = NULL;
+        }
+        block->next = new;
+        block->size = size;
+ 	}
+}
