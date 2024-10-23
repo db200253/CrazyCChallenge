@@ -186,6 +186,38 @@ Aprés plus de 4 ans d'études dans le domaine du numérique (à la création de
 
 ---
 
+## TODO List
+
+[x] Projet 1 : Simulateur d'allocation de mémoire
+
+[ ] Projet 2 : Analyseur de fuites de mémoire
+
+[ ] Projet 3 : Mini-système de gestion des processus
+
+[ ] Projet 4 : Serveur Web multi-threadé
+
+[ ] Projet 5 : Arbre AVL (auto-équilibré)
+
+[ ] Projet 6 : Système de gestion de graphes et algorithmes de parcours
+
+[ ] Projet 7 : Système de gestion des transactions bancaires
+
+[ ] Projet 8 : Implémentation d’un thread-safe logging system
+
+[ ] Projet 9 : Profiler de performances
+
+[ ] Projet 10 : Optimisation d’un algorithme de tri parallèle
+
+[ ] Projet 11 : Système de fichiers custom
+
+[ ] Projet 12 : Système de simulation d'ordonnancement de processus
+
+[ ] Projet 13 : Système de messagerie distribuée
+
+[ ] Projet 14 : Simulateur de réseau de capteurs pour systèmes embarqués
+
+---
+
 ## Contact
 Pour toute question ou suggestion, n'hésitez pas à ouvrir une issue ou à me contacter directement.
 
