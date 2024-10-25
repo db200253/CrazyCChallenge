@@ -6,19 +6,11 @@
 #endif
 
 #ifndef DOUBLE_FREE_MSG
-# define _DOUBLE_FREE_MSG "You tried to free a pointer that was already freed."
-#endif
-
-#ifndef DF_MSG_L
-# define DF_MSG_L 52
+# define DOUBLE_FREE_MSG "You tried to free a pointer that was already freed."
 #endif
 
 #ifndef BAD_FREE_MSG
 # define BAD_FREE_MSG "You tried to free a pointer that wasn't allocated."
-#endif
-
-#ifndef BF_MSG_L
-# define BF_MSG_L 51
 #endif
 
 # include <dlfcn.h>
@@ -52,21 +44,23 @@ typedef struct s_meminfo {
 extern t_meminfo *g_leak_analysis;
 static pthread_mutex_t g_leak_analysis_mutex = PTHREAD_MUTEX_INITIALIZER;
 
-/* Manipulation des linked lists pour garder les opérations sur la mémoire */
-void  add_memalloc(void *ptr, size_t size);
-void  add_memfree(void *ptr);
-void  add_bad_free(void *ptr, int flag);
+// Manipulation des listes chaînées pour la gestion de la mémoire
+void add_memalloc(void *ptr, size_t size);
+void add_memfree(void *ptr);
+void add_bad_free(void *ptr, int flag);
 t_memalloc *find_memalloc(void *ptr);
-void  remove_alloc(void *ptr);
-void  init_leak_analysis();
+int find_memfree(void *ptr);
+void remove_alloc(void *ptr);
+void init_leak_analysis();
+void clear_leak_analysis();
 
-/* Wrappers pour les fonctions de mémoire */
-void  *my_malloc(size_t size);
-void  *my_calloc(size_t nmemb, size_t size);
-void  *my_realloc(void *ptr, size_t size);
-void   my_free(void *ptr);
+// Wrappers pour les fonctions d'allocation de mémoire
+void *my_malloc(size_t size);
+void *my_calloc(size_t nmemb, size_t size);
+void *my_realloc(void *ptr, size_t size);
+void my_free(void *ptr);
 
-/* Affichage des leaks */
-void  print_memalloc();
+// Affichage des fuites mémoire en fin d'exécution
+void print_memalloc();
 
 #endif
